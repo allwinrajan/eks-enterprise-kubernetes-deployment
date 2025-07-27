@@ -1,4 +1,4 @@
-Introduction
+### Introduction
 
 1. What is EKS
 2. Why is EKS
@@ -31,11 +31,77 @@ Introduction
 29. How to install, configure and manage the kubernetes on on-premises ?
 ### Todays Agenda
 
-1. Let's say we have three master node (m1, m2, m3) and two worker node (w1, w2), we deployed an application on w2, so typically the task is how we are going to allow th exteral users
-   to access my application that deployed in kubernetes cluster
+| **Service Type**     | **Accessibility**                  | **Description**                                                                                  | **Real-Time Example**                                               |
+| -------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| **ClusterIP**        | Internal (within the cluster)      | Assigns an internal IP, accessible only inside the cluster for service-to-service communication. | Microservices in the same cluster talk to each other.               |
+| **NodePort**         | External via `<NodeIP>:<NodePort>` | Opens a static port (30000–32767) on all nodes for external access.                              | Accessing a web app by hitting `http://<NodeIP>:30080`.             |
+| **LoadBalancer**     | External (Internet)                | Creates an external load balancer (cloud provider) and assigns a public IP.                      | Hosting a production app on AWS/GCP with public access.             |
+| **ExternalName**     | External DNS mapping               | Maps service to an external DNS name; no proxying.                                               | Connecting to an external database `db.example.com`.                |
+| **Headless Service** | Internal, direct pod DNS           | No ClusterIP; gives direct DNS entries for pods, used for stateful apps.                         | Cassandra or MySQL cluster where each pod is accessed individually. |
 
-2. For that we need to run a pod through services by kubectl and service give three options 1 is we can use ClusterIP (Only Accesible within the cluster components like master node (m1, m2, m3)
-   worker node (w1,w2))
-   that we already have 2 is Using Nodeport that is Node level 3 is using
-   load balancer
-   
+**1. ClusterIP (Default)**
+It is the default Service type in Kubernetes.
+
+Provides an internal virtual IP accessible only within the cluster.
+
+Pods use this IP to communicate with other services internally.
+
+It does not allow external traffic from outside the cluster.
+
+Ideal for microservice-to-microservice communication.
+
+Example: Frontend service calling a backend service inside the cluster.
+
+**2. NodePort**
+Exposes the service on a static port (30000–32767) on every Node.
+
+External users can access it using <NodeIP>:<NodePort>.
+
+Useful when you need basic external access without a load balancer.
+
+The NodePort forwards requests to the corresponding ClusterIP Service.
+
+Works in any environment, even without a cloud provider.
+
+Example: Accessing a web app at http://192.168.1.10:30080.
+
+**3. LoadBalancer**
+Integrates with cloud providers (AWS, GCP, Azure) to create an external Load Balancer.
+
+Assigns a public IP for external users to access the service.
+
+Distributes traffic automatically across multiple pods.
+
+Best for production environments where public access is required.
+
+Requires a supported cloud environment or MetalLB in bare metal setups.
+
+Example: A customer-facing e-commerce website running on Kubernetes.
+
+**4. ExternalName**
+Maps a Kubernetes Service to an external DNS name instead of IP.
+
+Does not create a proxy or open ports inside the cluster.
+
+It simply returns a CNAME record pointing to the external service.
+
+Useful for connecting cluster apps to external APIs or databases.
+
+Reduces the need to hardcode external endpoints in application code.
+
+Example: Connecting to db.example.com for an external database.
+
+**5. Headless Service**
+Created by setting ClusterIP: None in the Service definition.
+
+Does not assign a virtual IP; instead, provides direct DNS records for pods.
+
+Enables clients to connect directly to individual pods.
+
+Commonly used for stateful apps or databases that need identity.
+
+Works with StatefulSets for stable network identities.
+
+Example: Cassandra or MySQL cluster for direct pod access.
+
+
