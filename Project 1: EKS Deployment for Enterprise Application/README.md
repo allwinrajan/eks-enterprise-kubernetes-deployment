@@ -1,4 +1,4 @@
-### Introduction
+## Introduction
 
 1. What is EKS
 2. Why is EKS
@@ -29,9 +29,9 @@
 27. If we are in AWS What is the Two way of Installing Kubernetes ? i) Using Ec2 (VM) and continue with Kops / Kubeadm / Minikube ? ii) Go with EKS ?
 28. Drawbacks of EKS ?
 29. How to install, configure and manage the kubernetes on on-premises ?
-### Todays Agenda
+## Todays Agenda
 
-## Types of Services in Kubernetes and Their Use Cases
+### Types of Services in Kubernetes and Their Use Cases
 
 | **Service Type**     | **Accessibility**                  | **Description**                                                                                  | **Real-Time Example**                                               |
 | -------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
