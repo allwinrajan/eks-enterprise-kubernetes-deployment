@@ -42,28 +42,20 @@
 | **Headless Service** | Internal, direct pod DNS           | No ClusterIP; gives direct DNS entries for pods, used for stateful apps.                         | Cassandra or MySQL cluster where each pod is accessed individually. |
 
 **1. ClusterIP (Default)**
-It is the default Service type in Kubernetes.
-
-Provides an internal virtual IP accessible only within the cluster.
-
-Pods use this IP to communicate with other services internally.
-
-It does not allow external traffic from outside the cluster.
-
-Ideal for microservice-to-microservice communication.
+- It is the default Service type in Kubernetes.
+- Provides an internal virtual IP accessible only within the cluster.
+- Pods use this IP to communicate with other services internally.
+- It does not allow external traffic from outside the cluster.
+- Ideal for microservice-to-microservice communication.
 
 Example: Frontend service calling a backend service inside the cluster.
 
 **2. NodePort**
-Exposes the service on a static port (30000–32767) on every Node.
-
-External users can access it using <NodeIP>:<NodePort>.
-
-Useful when you need basic external access without a load balancer.
-
-The NodePort forwards requests to the corresponding ClusterIP Service.
-
-Works in any environment, even without a cloud provider.
+- Exposes the service on a static port (30000–32767) on every Node.
+- External users can access it using <NodeIP>:<NodePort>.
+- Useful when you need basic external access without a load balancer.
+- The NodePort forwards requests to the corresponding ClusterIP Service.
+- Works in any environment, even without a cloud provider.
 
 Example: Accessing a web app at http://192.168.1.10:30080.
 
