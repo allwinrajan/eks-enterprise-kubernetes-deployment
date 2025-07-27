@@ -50,6 +50,8 @@
 
 Example: Frontend service calling a backend service inside the cluster.
 
+![ClusterIP](ClusterIP.png)
+
 **2. NodePort**
 - Exposes the service on a static port (30000–32767) on every Node.
 - External users can access it using <NodeIP>:<NodePort>.
