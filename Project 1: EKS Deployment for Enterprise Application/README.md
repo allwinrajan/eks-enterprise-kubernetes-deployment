@@ -60,41 +60,29 @@ Example: Frontend service calling a backend service inside the cluster.
 Example: Accessing a web app at http://192.168.1.10:30080.
 
 **3. LoadBalancer**
-Integrates with cloud providers (AWS, GCP, Azure) to create an external Load Balancer.
-
-Assigns a public IP for external users to access the service.
-
-Distributes traffic automatically across multiple pods.
-
-Best for production environments where public access is required.
-
-Requires a supported cloud environment or MetalLB in bare metal setups.
+- Integrates with cloud providers (AWS, GCP, Azure) to create an external Load Balancer.
+- Assigns a public IP for external users to access the service.
+- Distributes traffic automatically across multiple pods.
+- Best for production environments where public access is required.
+- Requires a supported cloud environment or MetalLB in bare metal setups.
 
 Example: A customer-facing e-commerce website running on Kubernetes.
 
 **4. ExternalName**
-Maps a Kubernetes Service to an external DNS name instead of IP.
-
-Does not create a proxy or open ports inside the cluster.
-
-It simply returns a CNAME record pointing to the external service.
-
-Useful for connecting cluster apps to external APIs or databases.
-
-Reduces the need to hardcode external endpoints in application code.
+- Maps a Kubernetes Service to an external DNS name instead of IP.
+- Does not create a proxy or open ports inside the cluster.
+- It simply returns a CNAME record pointing to the external service.
+- Useful for connecting cluster apps to external APIs or databases.
+- Reduces the need to hardcode external endpoints in application code.
 
 Example: Connecting to db.example.com for an external database.
 
 **5. Headless Service**
-Created by setting ClusterIP: None in the Service definition.
-
-Does not assign a virtual IP; instead, provides direct DNS records for pods.
-
-Enables clients to connect directly to individual pods.
-
-Commonly used for stateful apps or databases that need identity.
-
-Works with StatefulSets for stable network identities.
+- Created by setting ClusterIP: None in the Service definition.
+- Does not assign a virtual IP; instead, provides direct DNS records for pods.
+- Enables clients to connect directly to individual pods.
+- Commonly used for stateful apps or databases that need identity.
+- Works with StatefulSets for stable network identities.
 
 Example: Cassandra or MySQL cluster for direct pod access.
 
