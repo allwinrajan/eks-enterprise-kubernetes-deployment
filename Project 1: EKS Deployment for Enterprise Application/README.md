@@ -31,6 +31,8 @@
 29. How to install, configure and manage the kubernetes on on-premises ?
 ### Todays Agenda
 
+## Types of Services in Kubernetes and Their Use Cases
+
 | **Service Type**     | **Accessibility**                  | **Description**                                                                                  | **Real-Time Example**                                               |
 | -------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
 | **ClusterIP**        | Internal (within the cluster)      | Assigns an internal IP, accessible only inside the cluster for service-to-service communication. | Microservices in the same cluster talk to each other.               |
